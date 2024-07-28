@@ -13,7 +13,7 @@ const Navbar = (props: NavbarProps) => {
   return (
     <div className="navbar p-0">
       <div className="flex-1">
-        <Link href={'/'} className="text-4xl p-0">{titleLabel}</Link>
+        <Link href={'/'} className="text-4xl p-0 font-semibold">{titleLabel}</Link>
       </div>
       <div className="flex-1 justify-end">
         <Button className="btn btn-outline justify-start" onClick={onClickBtn}>

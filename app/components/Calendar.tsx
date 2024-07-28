@@ -21,12 +21,12 @@ const Calendar = (props: CalendarProps) => {
       plugins={[resourceTimelinePlugin]}
       headerToolbar={{
         left: "",
-        center: "title",
-        right: "prev,next",
+        center: "",
+        right: "",
       }}
       initialView="resourceTimelineYear"
       events={data.map((el, index): EventInput => {
-        const resourceId = `${el.user.split(" ").join()}_${index}`;
+        const resourceId = el.user.split(" ").join();
         return {
           id: `${index}`,
           resourceId,
@@ -44,8 +44,8 @@ const Calendar = (props: CalendarProps) => {
           </label>
         </>
       }
-      resources={data.map((el, index) => {
-        const resourceId = `${el.user.split(" ").join()}_${index}`;
+      resources={data.map((el) => {
+        const resourceId = el.user.split(" ").join()
         return {
           id: resourceId,
           title: el.user,
@@ -54,10 +54,11 @@ const Calendar = (props: CalendarProps) => {
       })}
       expandRows
       slotMinWidth={50}
-      viewClassNames={"border-2 border-slate-700"}
+      viewClassNames={"border-2 border-slate-200"}
       height={750}
       slotLabelFormat={[
-        { day: "numeric" }
+        { month: "long" },
+        { day: "numeric" },
       ]}
     />
   );
