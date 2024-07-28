@@ -4,7 +4,6 @@ import FullCalendar from "@fullcalendar/react";
 import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
 import { EventInput } from "@fullcalendar/core";
 import { format } from "date-fns";
-import { useState } from "react";
 import { CalendarData } from "./CalendarSection";
 
 interface CalendarProps {
