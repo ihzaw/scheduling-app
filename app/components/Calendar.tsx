@@ -5,6 +5,7 @@ import resourceTimelinePlugin from "@fullcalendar/resource-timeline";
 import { EventInput } from "@fullcalendar/core";
 import { format } from "date-fns";
 import { CalendarData } from "./CalendarSection";
+import { Search } from 'react-feather'
 
 interface CalendarProps {
   data: CalendarData[]
@@ -37,8 +38,10 @@ const Calendar = (props: CalendarProps) => {
       displayEventTime={false}
       resourceLabelClassNames="flex justify-center items-center h-full text-3xl"
       resourceAreaHeaderContent={
+        // Search functionality not yet implemented
         <>
           <label className="input input-bordered flex items-center gap-2 w-full">
+            <Search />
             <input type="text" className="grow" placeholder="Search" />
           </label>
         </>

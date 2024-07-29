@@ -4,6 +4,8 @@ import { useState } from "react";
 import Calendar from "./Calendar";
 import Navbar from "./Navbar";
 import ModalAddSchedule, { FormAdd } from "./ModalAddSchedule";
+import getOrSubmit from "../actions";
+import { revalidatePath } from "next/cache";
 
 export interface CalendarData {
   user: string;
@@ -28,18 +30,30 @@ const CalendarSection = (props: CalendarSectionProps) => {
     }
   };
 
-  const handleAddSchedule = (form: FormAdd) => {
+  const getCrewColor = (name: string | number | readonly string[] | undefined) => {
+    if (name === 'Crew A') {
+      return 'red'
+    }
+    if (name === 'Crew B') {
+      return 'blue'
+    }
+    if (name === 'Crew C') {
+      return 'green'
+    }
+  }
+
+  const handleAddSchedule = async (form: FormAdd) => {
     if (form && form.startDate && form.endDate) {
       const payload: CalendarData = {
         user: form.user as string,
         start: form.startDate.split('-').join('/'),
         end: form.endDate.split('-').join('/'),
+        color: getCrewColor(form.user) // currently has assumption that the crew is only 3
       }
 
-      setData([
-        ...data,
-        payload
-      ])
+      await getOrSubmit('SUBMIT', payload)
+      const newData = await getOrSubmit('GET')
+      setData(newData)
     }
   }
 

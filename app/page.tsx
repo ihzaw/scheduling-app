@@ -1,9 +1,12 @@
-import Calendar from "./components/Calendar";
 import CalendarSection from "./components/CalendarSection";
 import initialData from './data/schedule.json'
+import fs from 'fs/promises';
+import path from 'path';
 
-async function getData () {
-  return initialData
+async function getData() {
+  const filePath = path.join(process.cwd(), 'app/data/schedule.json');
+  const fileContents = await fs.readFile(filePath, 'utf8');
+  return JSON.parse(fileContents);
 }
 
 export default async function Home() {
